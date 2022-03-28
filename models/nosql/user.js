@@ -8,12 +8,13 @@ const UserSchema =  new mongoose.Schema({
     age: {
         type: Number
     },
-    emal: {
+    email: {
         type: String,
         unique: true
     },
     password: {
-        type: String
+        type: String,
+        select: false
     },
     role: {
         type: ['user', 'admin'],

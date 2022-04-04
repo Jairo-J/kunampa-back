@@ -1,22 +1,19 @@
 const express = require('express');
-const {matchedData} = require("express-validator");
 
+const {loginCtrl, registerCtrl} = require('../controllers/auth');
 const {validatorRegister, validatorLogin} = require('../validators/auth');
-const {compare, encrypt} = require('../utils/handlePassword');
-const {usersModel} = require('../models');
+
 
 const router = express.Router();
 
 /**
- * Crear un item
+ * Registro nuevo usuario
  */
-router.post('/register', validatorRegister, async (req, res) => {
-    req = matchedData(req);
-    const passwordHash = await encrypt(req.password);
-    const body = {...req, password: passwordHash};
-    const data = await usersModel.create(body);
-    data.set('password', undefined, {strict: false});
-    res.send({data});
-});
+router.post('/register', validatorRegister, registerCtrl);
+
+/**
+ *
+ */
+router.post('/login', validatorLogin, loginCtrl);
 
 module.exports = router;

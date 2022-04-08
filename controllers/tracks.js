@@ -51,7 +51,6 @@ const createItems = async (req, res) => {
         handleHttpError(res, 'ERROR_CREATE_ITEMS');
     }
 }
-// https://youtu.be/xRXHQlqA3Ak?t=5738
 
 /**
  * Actualizar un track
@@ -71,7 +70,6 @@ const updateItems = async (req, res) => {
 
 /**
  * Eliminar un track
- * https://youtu.be/xRXHQlqA3Ak?t=11117
  * @param req
  * @param res
  */

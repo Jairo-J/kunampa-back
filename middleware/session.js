@@ -27,4 +27,3 @@ const authMiddleware = async (req, res, next) => {
 }
 
 module.exports = authMiddleware;
-// https://youtu.be/xRXHQlqA3Ak?t=16568

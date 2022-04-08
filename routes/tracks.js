@@ -3,6 +3,7 @@ const {validatorCreateItem, validatorGetItem} = require('../validators/tracks');
 const {getItems, createItems, getItem, updateItems, deleteItems} = require('../controllers/tracks');
 const customHeader = require('../middleware/customHeader');
 const authMiddleware = require('../middleware/session');
+const checkRol = require('../middleware/rol');
 
 const router = express.Router();
 
@@ -14,12 +15,12 @@ router.get('/', authMiddleware, getItems);
 /**
  * Optener un item
  */
-router.get('/:id',validatorGetItem, getItem);
+router.get('/:id', authMiddleware,validatorGetItem, getItem);
 
 /**
  * Crear un item
  */
-router.post('/', validatorCreateItem, customHeader, createItems);
+router.post('/', authMiddleware, checkRol(['admin']), validatorCreateItem, createItems);
 
 /**
  * Actualizar un item

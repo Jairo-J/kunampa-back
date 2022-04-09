@@ -22,4 +22,3 @@ const checkRol = (roles) => (req, res, next) => {
 }
 
 module.exports = checkRol;
-// https://youtu.be/xRXHQlqA3Ak?t=18539

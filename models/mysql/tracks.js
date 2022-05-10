@@ -23,10 +23,10 @@ const Tracks = sequelize.define(
         artist_nationality: {
             type: DataTypes.STRING
         },
-        artist_start: {
+        duration_start: {
             type: DataTypes.INTEGER
         },
-        artist_end: {
+        duration_end: {
             type: DataTypes.INTEGER
         },
         mediaId: {

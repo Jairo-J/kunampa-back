@@ -11,7 +11,7 @@ const propertiesKey = getProperties();
  */
 const tokenSign = async (user) => {
     return jwt.sign({
-        _id: user._id,
+        [propertiesKey.id]: user[propertiesKey.id],
         role: user.role
     }, JWT_SECRET, {
         expiresIn: '2h'

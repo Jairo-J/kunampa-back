@@ -8,14 +8,17 @@ const {matchedData} = require('express-validator');
  * @param req
  * @param res
  */
+// https://youtu.be/xRXHQlqA3Ak?t=20936
 const getItems = async (req, res) => {
     try {
         const user = req.user;
 
-        const data = await tracksModel.find({});
+        // const data = await tracksModel.find({});
+        const data = await tracksModel.findAll();
         res.send({data, user});
     } catch (e) {
         handleHttpError(res, 'ERROR_GET_ITEMS');
+        console.log('ERROR_GET_ITEMS: ', e);
     }
 }
 
@@ -42,13 +45,17 @@ const getItem = async (req, res) => {
  * @param req
  * @param res
  */
+// https://youtu.be/xRXHQlqA3Ak?t=20684
 const createItems = async (req, res) => {
     try {
+        console.log('*************************');
         const body = matchedData(req);
+        console.log('** BODY-TRACKS-PARSER **: ', body);
         const data = await tracksModel.create(body);
         res.send({data});
     } catch (e) {
         handleHttpError(res, 'ERROR_CREATE_ITEMS');
+        console.log('ERROR_CREATE_ITEMS: ', e);
     }
 }
 

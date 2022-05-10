@@ -14,10 +14,12 @@ const MEDIA_PATH = `${__dirname}/../storage`;
  */
 const getItems = async (req, res) => {
     try {
-        const data = await storageModel.find({});
+        // const data = await storageModel.find({});
+        const data = await storageModel.findAll();
         res.send({data});
     } catch (e) {
         handleHttpError(res, 'ERROR_LIST_ITEMs_STORAGE');
+        console.log('ERROR_LIST_ITEMs_STORAGE: ', e);
     }
 }
 

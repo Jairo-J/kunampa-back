@@ -25,6 +25,7 @@ const registerCtrl = async (req, res) => {
 
         res.send({data});
     } catch (e) {
+        console.log('ERROR_REGISTER_USER: ', e);
         handleHttpError(res, 'ERROR_REGISTER_USER')
     }
 }
@@ -37,7 +38,8 @@ const registerCtrl = async (req, res) => {
 const loginCtrl = async (req, res) => {
     try {
         req = matchedData(req);
-        const user = await usersModel.findOne({email: req.email}).select('password name role email');
+        const user = await usersModel.findOne({email: req.email});
+        // const user = await usersModel.findOne({email: req.email}).select('password name role email');
 
         if (!user) {
             handleHttpError(res, 'USER_NOT_EXISTS', 404);

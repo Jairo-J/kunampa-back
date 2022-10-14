@@ -8,13 +8,13 @@ const {matchedData} = require('express-validator');
  * @param req
  * @param res
  */
-// https://youtu.be/xRXHQlqA3Ak?t=20936
+// https://youtu.be/xRXHQlqA3Ak?t=21275
 const getItems = async (req, res) => {
     try {
         const user = req.user;
 
         // const data = await tracksModel.find({});
-        const data = await tracksModel.findAll();
+        const data = await tracksModel.findAllData();
         res.send({data, user});
     } catch (e) {
         handleHttpError(res, 'ERROR_GET_ITEMS');

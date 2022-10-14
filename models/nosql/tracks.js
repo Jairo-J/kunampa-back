@@ -44,5 +44,19 @@ const TracksSchema =  new mongoose.Schema({
     versionKey: false
 });
 
+TracksSchema.statics.findAllData = function (name) {
+    const joinData = this.aggregate([
+        {
+            $lookup: {
+                from: 'storages',       // Modelo a relacionarse
+                localField: 'mediaId',  // Campo q hace de llave primaria
+                foreignField: '_id',    // Campo q hace de llave foranea
+                as: 'audio'             // Alias para lo obtenido
+            }
+        }
+    ]);
+    return joinData;
+}
+
 TracksSchema.plugin(mongooseDelete, {overrideMethods: 'all'});
 module.exports = mongoose.model('tracks', TracksSchema)

@@ -5,6 +5,7 @@ const models = {
     usersModel: require(`${pathModels}/user`),
     tracksModel: require(`${pathModels}/tracks`),
     storageModel: require(`${pathModels}/storage`),
+    wishModel: require(`${pathModels}/wish`),
 }
 
 module.exports = models;

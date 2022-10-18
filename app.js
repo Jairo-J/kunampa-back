@@ -16,6 +16,9 @@ const ENGINE_DB = process.env.ENGINE_DB;
  * ROUTES
  */
 app.use('/api', require('./routes'));
+app.use('/', (req, res) => {
+    res.send('hello world');
+});
 
 app.listen(port, () => {
     console.log('Tu app esta lista por http://localhost:' + port);

@@ -1,4 +1,4 @@
-const {wishModel} = require('../models')
+const {wishModel, storageModel} = require('../models')
 const {handleHttpError} = require("../utils/handleError");
 const {matchedData} = require("express-validator");
 
@@ -15,4 +15,15 @@ const createItems = async (req, res) => {
     }
 }
 
-module.exports = {createItems}
+const getItems = async (req, res) => {
+    try {
+        // const data = await storageModel.find({});
+        const data = await wishModel.findAll();
+        res.send({data});
+    } catch (e) {
+        handleHttpError(res, 'ERROR_LIST_ITEMs_STORAGE');
+        console.log('ERROR_LIST_ITEMs_STORAGE: ', e);
+    }
+}
+
+module.exports = {createItems, getItems}

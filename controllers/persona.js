@@ -1,4 +1,4 @@
-const {personaModel} = require('../models')
+const {connection} = require('../config/mysql')
 const { handleHttpError } = require('../utils/handleError');
 const {matchedData} = require('express-validator');
 
@@ -11,16 +11,22 @@ const {matchedData} = require('express-validator');
 const updateItems = async (req, res) => {
     try {
         const {id, ...body} = matchedData(req);
-        // const data = await personaModel.findOneAndUpdate(id, body);
-        const data = await personaModel.update(body, {
-            where: {
-                id: id
-            }
-        });
-        // TODO: Pendiente la documentacion y la validacion de cargar imagen
-        res.send({data});
+        connection.query(
+            "UPDATE `personas` SET `nombre` = ?, `avatar` = ?, `dni` = ?, `direccion` = ? WHERE `personas`.`id` = ?",
+            [body.nombre, body.avatar, body.dni, body.direccion, id],
+            (error, result) => {
+                if (error){
+                    //console.log(error);
+                    res.send({message: 'Hubo un error al actualizar los datos de perfil'}, 404);
+                } else {
+                    //console.log(result);
+                    res.send({message: 'Perfil actualizado correctamente'});
+                }
+            });
+
     } catch (e) {
         handleHttpError(res, 'ERROR_UPDATE_ITEMS');
+        handleHttpError(e);
     }
 }
 

@@ -15,7 +15,7 @@ const getItems = async (req, res) => {
         // pagina a buscar
         let {page} = req.query;
         page = (page) ? page : '1';
-        const per_page = 3;
+        const per_page = 10;
         pageSQL = (page > 0) ? (page-1)*per_page : 0;
 
         // total de registros

@@ -49,7 +49,7 @@ const getItems = async (req, res) => {
 
                     // Obtener los registros
                     connection.query(
-                        "SELECT `compras`.`id` AS `idPedido`, CONCAT('# ', `compras`.`id`, ' ',`compras`.`nombres`) AS `pedido`, `compras`.`created_at`, `compras`.`total`, `compra_flores`.`estado` FROM `compras` INNER JOIN `compra_flores` ON `compras`.`id` = `compra_flores`.`idCompra`  WHERE `compras`.`idCliente` = ? GROUP BY `compras`.`id` LIMIT ?,?",
+                        "SELECT `compras`.`id` AS `idPedido`, CONCAT('# ', `compras`.`id`, ' ',`compras`.`nombres`) AS `pedido`, `compras`.`created_at` AS `fechaCompra`, `compras`.`total`, `compra_flores`.`estado` FROM `compras` INNER JOIN `compra_flores` ON `compras`.`id` = `compra_flores`.`idCompra`  WHERE `compras`.`idCliente` = ? GROUP BY `compras`.`id` LIMIT ?,?",
                         [id, pageSQL, per_page],
                         (error, result) => {
                             if (error){

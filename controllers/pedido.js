@@ -1,4 +1,4 @@
-const {connection} = require('../config/mysql')
+const {connection} = require('../config/mysql');
 const { handleHttpError } = require('../utils/handleError');
 const {matchedData} = require('express-validator');
 

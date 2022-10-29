@@ -3,9 +3,23 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+const corsOpts = {
+    origin: '*',
+
+    methods: [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE'
+    ],
+
+    allowedHeaders: [
+        'Content-Type',
+    ],
+};
+app.use(cors(corsOpts));
 app.use(express.json());
-app.use(express.static('storage'));
+//app.use(express.static('storage'));
 
 const port = process.env.PORT || 3000;
 const ENGINE_DB = process.env.ENGINE_DB;

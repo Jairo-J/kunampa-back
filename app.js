@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+
 const corsOpts = {
     origin: '*',
 
@@ -17,6 +18,7 @@ const corsOpts = {
         'Content-Type',
     ],
 };
+
 app.use(cors(corsOpts));
 app.use(express.json());
 //app.use(express.static('storage'));
